@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Smile Community | Interactive Programs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #fefefe;
+            scroll-behavior: smooth;
+            color: #1e2f3e;
+        }
+
+        /* NAVBAR */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0a3d62;
+            color: white;
+            padding: 12px 5%;
+            flex-wrap: wrap;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            background: white;
+            padding: 4px;
+        }
+
+        .logo h1 {
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 14px;
+            transition: 0.2s;
+            border-radius: 30px;
+        }
+
+        nav a:hover {
+            background: #2c6e9e;
+            transform: translateY(-2px);
+        }
+
+        /* HERO */
+.hero {
+    background: 
+    linear-gradient(rgba(10,61,98,0.75), rgba(10,61,98,0.85)), 
+    url('images/photo3.jpg') center 55%/cover no-repeat;
+    color: rgb(231, 201, 201);
+    text-align: center;
+    padding: 100px 20px;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        /* ABOUT SECTION (blue theme) */
+        .about-section {
+            background-color: #0a3d62;
+            color: white;
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .banner h1 {
+            font-size: 3rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 850px;
+            margin: 0 auto 45px auto;
+        }
+
+        .info-boxes {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 35px;
+        }
+
+        .info-box {
+            background: white;
+            color: #0a3d62;
+            padding: 30px 24px;
+            width: 320px;
+            border-radius: 24px;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.2);
+            text-align: left;
+            transition: 0.2s;
+        }
+
+        .info-box h2 {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            border-left: 5px solid #0a3d62;
+            padding-left: 15px;
+        }
+
+        /* PROGRAMS SECTION (interactive accordion style) */
+        #programs {
+            padding: 60px 5%;
+            background: #f8fafc;
+        }
+
+        #programs > h2 {
+            text-align: center;
+            font-size: 2.6rem;
+            color: #0a3d62;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        /* PROGRAM CARDS (grid) */
+        .programs-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 28px;
+            width: 260px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 12px 24px -10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+            border: 1px solid #e2edf2;
+        }
+
+        .program-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 22px 32px -14px rgba(10,61,98,0.25);
+        }
+
+        .card-img {
+            height: 170px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .program-card h3 {
+            font-size: 1.8rem;
+            margin: 20px 0 12px;
+            color: #0a3d62;
+        }
+
+        .program-card p {
+            padding: 0 18px 20px;
+            color: #4a627a;
+            font-weight: 500;
+        }
+
+        .click-badge {
+            background: #eef2f7;
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            margin-bottom: 18px;
+            color: #0a3d62;
+            font-weight: 500;
+        }
+
+        /* DETAIL PANEL (expands below) */
+        .program-detail-panel {
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 18px 35px -12px rgba(0,0,0,0.12);
+            margin-top: 20px;
+            padding: 0;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: 0.2s;
+            border: 1px solid #dce9f0;
+            overflow: hidden;
+        }
+
+        .detail-hidden {
+            display: none;
+        }
+
+        .detail-visible {
+            display: block;
+            animation: fadeSlide 0.3s ease-out;
+        }
+
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .detail-inner {
+            padding: 30px 32px;
+        }
+
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #e2edf2;
+            padding-bottom: 18px;
+            margin-bottom: 24px;
+        }
+
+        .detail-header h3 {
+            font-size: 2rem;
+            color: #0a3d62;
+            margin: 0;
+        }
+
+        .close-detail {
+            background: #f0f4f9;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: 60px;
+            font-weight: bold;
+            color: #2c5a7a;
+            transition: 0.15s;
+        }
+
+        .close-detail:hover {
+            background: #e0e8f0;
+            transform: scale(0.96);
+        }
+
+        .detail-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .detail-text {
+            flex: 2;
+            min-width: 220px;
+        }
+
+        .detail-text p {
+            font-size: 1.05rem;
+            line-height: 1.55;
+            margin-bottom: 18px;
+            color: #1f3b4c;
+        }
+
+        .detail-gallery {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .detail-gallery img {
+            width: 100%;
+            border-radius: 20px;
+            height: 140px;
+            object-fit: cover;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+            transition: 0.2s;
+        }
+
+        @media (max-width: 750px) {
+            .detail-content {
+                flex-direction: column;
+            }
+            .program-card {
+                width: 100%;
+                max-width: 320px;
+            }
+            .detail-inner {
+                padding: 20px;
+            }
+        }
+
+        /* NEWS & GALLERY & CONTACT */
+        #news {
+            background: #eef3fc;
+            padding: 55px 5%;
+            text-align: center;
+        }
+
+        .news-box {
+            background: white;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 32px 28px;
+            border-radius: 36px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+        }
+
+        .news-box h2 {
+            color: #0a3d62;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .news-box p {
+            font-size: 1rem;
+            margin: 14px 0;
+            line-height: 1.5;
+        }
+
+        #gallery {
+            padding: 55px 5%;
+            background: white;
+            text-align: center;
+        }
+
+        #gallery h2 {
+            font-size: 2.2rem;
+            color: #0a3d62;
+            margin-bottom: 35px;
+        }
+
+        .gallery-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 22px;
+        }
+
+        .gallery-grid img {
+            width: 280px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 28px;
+            box-shadow: 0 12px 18px -8px rgba(0,0,0,0.2);
+            transition: 0.2s;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.02);
+        }
+
+        #contact {
+            background: #0a3d62;
+            color: white;
+            padding: 45px 5%;
+            text-align: center;
+        }
+
+        #contact h2 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        #contact p {
+            font-size: 1.2rem;
+            margin: 8px 0;
+        }
+
+        footer {
+            background: #05253b;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 22px;
+            font-size: 0.9rem;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <!-- placeholder logo (simulated) -->
+        <img src="images/logo.jpg" alt="Smile Community Logo">
+        <h1>Smile Community</h1>
+    </div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about-vision">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#news">News</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section id="home" class="hero">
+    <h2>Giving Back to the Community</h2>
+    <p>We support orphans, promote education, improve health, and protect the environment through our programs.<br>Your welcome in our community!</p>
+</section>
+
+<section id="about-vision" class="about-section">
+    <div class="banner">
+        <h1>ABOUT US</h1>
+    </div>
+    <div class="about-content">
+        <p>
+            Smile Community is a youth-driven initiative dedicated to helping orphaned children,
+            promoting education, improving health, and raising environmental awareness. 
+            We aim to create meaningful change in our communities through sustainable programs and active youth participation.
+        </p>
+        <div class="info-boxes">
+            <div class="info-box">
+                <h2>Our Vision</h2>
+                <p>To build a future where every child has access to care, education, and a safe environment to grow.</p>
+            </div>
+            <div class="info-box">
+                <h2>Our Mission</h2>
+                <p>To empower communities by supporting orphaned children, promoting learning opportunities, and encouraging environmental responsibility.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROGRAMS SECTION (INTERACTIVE: click to expand below) -->
+<section id="programs">
+    <h2>Our Programs</h2>
+    <div class="section-intro">
+        💡 We conducting different program in our community and some of those are these.
+    </div>
+
+    <!-- Program Cards Grid -->
+    <div class="programs-grid" id="programsGrid">
+        <!-- Charity Card -->
+        <div class="program-card" data-program="charity">
+            <div class="card-img" style="background-image: url('https://placehold.co/600x400/FFB347/white?text=Charity+Care');"></div>
+            <h3>Charity</h3>
+            <p>Support orphans & essential needs</p>
+            <div class="click-badge">🔽 Click to expand</div>
+        </div>
+        <!-- Education Card -->
+        <div class="program-card" data-program="education">
+            <div class="card-img" style="background-image: url('https://placehold.co/600x400/4A90E2/white?text=Education+For+All');"></div>
+            <h3>Education</h3>
+            <p>School supplies & mentorship</p>
+            <div class="click-badge">🔽 Click to expand</div>
+        </div>
+        <!-- Environment Card -->
+        <div class="program-card" data-program="environment">
+            <div class="card-img" style="background-image: url('https://placehold.co/600x400/2E8B57/white?text=Green+Action');"></div>
+            <h3>Environment</h3>
+            <p>Tree planting & sustainability</p>
+            <div class="click-badge">🔽 Click to expand</div>
+        </div>
+        <!-- Health Card -->
+        <div class="program-card" data-program="health">
+            <div class="card-img" style="background-image: url('https://placehold.co/600x400/DD6B4A/white?text=Health+Wellness');"></div>
+            <h3>Health</h3>
+            <p>Wellness campaigns & clinics</p>
+            <div class="click-badge">🔽 Click to expand</div>
+        </div>
+    </div>
+
+    <!-- DYNAMIC DETAIL PANEL (appears when a program is clicked) -->
+    <div id="programDetailPanel" class="program-detail-panel detail-hidden">
+        <div class="detail-inner" id="detailInner">
+            <!-- content injected via JS -->
+        </div>
+    </div>
+</section>
+
+<!-- NEWS SECTION -->
+<section id="news">
+    <div class="news-box">
+        <h2>📢 Latest News</h2>
+        <p><strong>✨ First Visit to Orphanage:</strong> Smile Community successfully visited an orphanage in Dar es Salaam, sharing donations and spending quality time with children.</p>
+        <p><strong>🌱 Upcoming Activities:</strong> We are planning more visits, educational workshops, tree-planting campaigns, and health outreach programs.</p>
+        <p><strong>🎓 Back-to-School Drive:</strong> remember kamujeabedi.</p>
+    </div>
+</section>
+
+<!-- GALLERY SECTION -->
+<section id="gallery">
+    <h2>📸 Our Activities</h2>
+    <div class="gallery-grid">
+
+        <div class="gallery-item">
+            <img src="images/photo3.jpg">
+            <p>Visiting orphans</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/photo2.jpg">
+            <p>Playing with children</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://placehold.co/500x400/C5E99B/white?text=Community+Support">
+            <p>Community support</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://placehold.co/500x400/F9C6A0/white?text=Health+Camp">
+            <p>Health camp</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2>📞 Contact Us</h2>
+    <p>✉️ Email: kamujeabedi@gmail.com</p>
+    <p>📞 Phone: +255 624 658 175</p>
+    <p>📍 Follow us for updates & volunteer opportunities</p>
+</section>
+
+<footer>
+    <p>© 2026 Smile Community | All Rights Reserved | Empowering lives together</p>
+</footer>
+
+<script>
+    // Program data: detailed content, description and images specific to each program
+    const programsData = {
+        charity: {
+            title: "Charity Program",
+            description: "Our Charity program focuses on supporting orphaned children with essential needs such as food, clothing, healthcare, and emotional support. We partner with local communities to identify children in need and ensure they receive care and opportunities to thrive. Every donation goes directly to uplifting vulnerable kids and creating safe spaces.",
+            images: [
+                "https://placehold.co/500x350/F9D8A7/white?text=Food+Distribution",
+                "https://placehold.co/500x350/F7B787/white?text=Clothing+Donation"
+            ],
+            extraNote: "❤️ Our first charity event at UMRA OPHANAGE CENTER at MAGOMENI , DAR ES SALAAM we have saved childrens with their basic needs and provide FOOD,CLOTHES, SCHOOL ITEMS  LIKE BOOKS ,PENS  and share our time with then in Games and sport."
+        },
+        education: {
+            title: "Education Program",
+            description: "Our Education program empowers children and youth through  school supplies, mentorship, and learning workshops. We believe that knowledge is the foundation for a brighter future and actively work to make learning accessible to all. We provide after-school tutoring and digital literacy classes to bridge the opportunity gap.",
+            images: [
+                "https://placehold.co/500x350/9AC4F8/white?text=Mentorship",
+                "https://placehold.co/500x350/7CA5D9/white?text=School+Supplies"
+            ],
+            extraNote: "Through our visits to orphanages and schools, we go beyond giving—we share knowledge and provide essential school supplies. At Magomeni Mikumi, we supported children not only with materials, but also with education, guidance, and meaningful interaction. Our goal is to empower young minds, inspire hope, and create lasting impact in every place we reach."
+        },
+        environment: {
+            title: "Environment Program",
+            description: "Through our visits to orphanages and schools, we go beyond giving—we share knowledge and provide essential school supplies. At Magomeni Mikumi, we supported children not only with materials, but also with education, guidance, and meaningful interaction. Our goal is to empower young minds, inspire hope, and create lasting impact in every place we reach. 💙📚 .",
+            images: [
+                "https://placehold.co/500x350/7CB083/white?text=Tree+Planting",
+                "https://placehold.co/500x350/5A8F6C/white?text=Cleanup+Drive"
+            ],
+            //extraNote: "🌳 Over 1,500 trees planted this year, monthly cleanups."
+        },
+        health: {
+            title: "Health Program",
+            description: "Our Health program aims to improve community wellness through health awareness campaigns, vaccinations, first aid training, and nutrition guidance. We collaborate with local clinics to ensure children and families receive proper medical care. Regular health camps provide free checkups and hygiene education.",
+            images: [
+                "https://placehold.co/500x350/E68A6E/white?text=Health+Awareness",
+                "https://placehold.co/500x350/D97A5C/white?text=Vaccination+Drive"
+            ],
+            //extraNote: "🩺 Served 500+ families with health screenings and nutrition workshops."
+        }
+    };
+
+    const panel = document.getElementById('programDetailPanel');
+    const detailInner = document.getElementById('detailInner');
+
+    // Function to render detail panel for a given program key
+    function showProgramDetail(programKey) {
+        const prog = programsData[programKey];
+        if (!prog) return;
+
+        // Build the HTML structure for expanded view
+        const imagesHtml = prog.images.map(imgUrl => `<img src="${imgUrl}" alt="${prog.title} image">`).join('');
+
+        const detailHtml = `
+            <div class="detail-header">
+                <h3>📌 ${prog.title}</h3>
+                <button class="close-detail" id="closeDetailBtn" aria-label="Close details">✖</button>
+            </div>
+            <div class="detail-content">
+                <div class="detail-text">
+                    <p>${prog.description}</p>
+                    <p style="background:#eef2fa; padding:12px; border-radius:20px; margin-top:10px;"><strong>✨ Impact highlight:</strong> ${prog.extraNote}</p>
+                    <p><strong>🤝 Get involved:</strong> Volunteer or donate to support this program and make a direct difference.</p>
+                </div>
+                <div class="detail-gallery">
+                    ${imagesHtml}
+                </div>
+            </div>
+        `;
+
+        detailInner.innerHTML = detailHtml;
+        panel.classList.remove('detail-hidden');
+        panel.classList.add('detail-visible');
+
+        // Attach close button event listener after DOM injection
+        const closeBtn = document.getElementById('closeDetailBtn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeDetailPanel();
+            });
+        }
+
+        // Smooth scroll to panel for better UX
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function closeDetailPanel() {
+        panel.classList.add('detail-hidden');
+        panel.classList.remove('detail-visible');
+        // optional: clear content to avoid flicker (but keep)
+        detailInner.innerHTML = '';
+    }
+
+    // Add click listeners to each program card
+    const cards = document.querySelectorAll('.program-card');
+    cards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            // stop if clicked on close button later but no need
+            const programId = card.getAttribute('data-program');
+            if (programId && programsData[programId]) {
+                showProgramDetail(programId);
+            }
+        });
+    });
+
+    // Optional: close panel if clicking outside? not needed, but we provide close button.
+    // Also clicking on a new program replaces current detail content
+    // Ensure if detail is already open, clicking another program updates content
+    // Already handled because showProgramDetail replaces innerHTML.
+
+    // Bonus: if someone clicks on "close", it's handled. also add key escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && panel.classList.contains('detail-visible')) {
+            closeDetailPanel();
+        }
+    });
+
+    // small style: prevent accidental close from bubbling
+    // Add a tiny placeholder for images: the placeholders are clear and informative
+    // Also for mobile: fully responsive
+    // The whole requirement: "programs zfunguke kwa chini the ndy nichague ninayoitaka kuisoma" means click any program and the detailed description appears below the cards.
+    // We achieved exactly that: each program card when clicked opens a unified panel directly below the grid, showing detailed description, impact, and two images per program.
+
+    // Additional improvement: if page loads and there's no detail, panel hidden.
+    // Also added a close [X] to collapse the detailed view.
+    // For good measure, also show on load initial? no, hidden.
+
+    // Preload styling: already done.
+    console.log("Interactive programs ready — click any program card to see full details below!");
+</script>
+</body>
+</html>
